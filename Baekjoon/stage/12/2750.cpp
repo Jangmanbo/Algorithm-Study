@@ -30,4 +30,5 @@ int main() {
 	{
 		cout << num[i] << "\n";
 	}
+	return 0;
 }
