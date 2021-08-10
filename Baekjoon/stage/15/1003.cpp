@@ -17,4 +17,5 @@ int main() {
 		else if (N == 1) cout << 0 << " " << 1 << "\n";
 		else cout << one[N - 1] << " " << one[N - 1] + one[N - 2] << "\n";
 	}
+	return 0;
 }
