@@ -16,4 +16,5 @@ int main() {
 	}
 
 	cout << min(min(house[N - 1][0], house[N - 1][1]), house[N - 1][2]);
+	return 0;
 }
