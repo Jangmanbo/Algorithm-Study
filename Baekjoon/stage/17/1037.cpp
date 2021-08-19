@@ -11,4 +11,5 @@ int main() {
 		if (num > max) max = num;
 	}
 	cout << min * max;
+	return 0;
 }
