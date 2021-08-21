@@ -4,6 +4,7 @@ using namespace std;
 
 int main() {
 	int n, num;
+	int buf[2];
 	cin >> n;
 	int* triangle = new int[n];
 	int* line = new int[n];
@@ -14,12 +15,15 @@ int main() {
 		{
 			cin >> line[j];
 		}
-		triangle[0] += line[0];
+		buf[0] = triangle[0] + line[0];
 		for (int j = 1; j < i; j++)
 		{
-			triangle[j] += max(line[j - 1], line[j]);
+			buf[1] = line[j] + max(triangle[j - 1], triangle[j]);
+			triangle[j - 1] = buf[0];
+			buf[0] = buf[1];
 		}
 		triangle[i] = line[i] + triangle[i - 1];
+		triangle[i - 1] = buf[0];
 	}
 
 	cout << *max_element(triangle, triangle + n);
