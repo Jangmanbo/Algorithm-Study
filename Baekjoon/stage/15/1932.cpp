@@ -27,4 +27,5 @@ int main() {
 	}
 
 	cout << *max_element(triangle, triangle + n);
+	return 0;
 }
