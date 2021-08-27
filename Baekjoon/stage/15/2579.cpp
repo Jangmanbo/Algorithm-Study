@@ -4,19 +4,20 @@ using namespace std;
 int main() {
 	int n;
 	cin >> n;
-	int* stairs = new int[n + 1]();
-	int** score = new int*[n + 1];
-	for (int i = 0; i <= n; i++)
-		score[i] = new int[2]();
-	cin >> stairs[1];
-	score[1][0] = stairs[1];
-	score[1][1] = stairs[1];
+	int* dp = new int[n + 1]();
+	int* score = new int[n + 1]();
 
-	for (int i = 2; i <= n; i++)
-	{
-		cin >> stairs[i];
-		score[i][0] = score[i - 1][1] + stairs[i];
-		score[i][1] = max(score[i - 2][0], score[i - 2][1]) + stairs[i];
+	cin >> score[1];
+	dp[1] = score[1];
+	if (n > 1) {
+		cin >> score[2];
+		dp[2] = score[1] + score[2];
 	}
-	cout << max(score[n][0], score[n][1]);
+	for (int i = 3; i <= n; i++)
+	{
+		cin >> score[i];
+		dp[i] = max(dp[i - 3] + score[i - 1] + score[i], dp[i - 2] + score[i]);
+	}
+
+	cout << dp[n];
 }
