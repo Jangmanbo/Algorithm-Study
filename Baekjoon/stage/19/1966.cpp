@@ -1,52 +1,44 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
-
 int main() {
-	int T, N, M, priority, last = -1, ans = 0;
-	int document[100];
+	int T, N, M, priority, ans = 0;
+	pair<int, int> document;
+	queue<pair<int, int>> q;
+	priority_queue<int> pq;
+
 	cin >> T;
 	for (int i = 0; i < T; i++)
 	{
 		cin >> N >> M;
-		for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
 		{
-			cin >> document[i];
+			cin >> priority;
+			q.push(make_pair(j, priority));
+			pq.push(priority);
 		}
-		priority = document[M];
-
-
-		for (int i = 9; i > priority; i--)
+		while (!q.empty())
 		{
-			for (int j = 0; j < N; j++)
-			{
-				if (document[j] == i) {
-					last = j;
-					ans++;
+			document = q.front();
+			q.pop(); //queue에서 문서를 pop
+
+			if (document.second != pq.top()) {//가장 높은 중요도가 아닌 경우
+				q.push(document);//문서를 다시 push
+			}
+			else {//가장 높은 중요도인 경우
+				pq.pop();
+				ans++;
+				if (document.first == M) {//현재 문서가 M번째 문서인 경우
+					cout << ans << "\n";
+					break;
 				}
 			}
 		}
-		
-
-		if (M > last) {
-			for (int i = last + 1; i < M; i++)
-			{
-				if (document[i] == priority) ans++;
-			}
-		}
-		else {
-			for (int i = last + 1; i < N; i++)
-			{
-				if (document[i] == priority) ans++;
-			}
-			for (int i = 0; i < M; i++)
-			{
-				if (document[i] == priority) ans++;
-			}
-		}
-		cout << ans + 1 << "\n";
+		//초기화
+		q = queue<pair<int, int>>();
+		pq = priority_queue<int>();
 		ans = 0;
-		last = -1;
 	}
 	return 0;
 }
