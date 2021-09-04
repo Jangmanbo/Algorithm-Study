@@ -40,5 +40,6 @@ int main() {
 		VPS = true;
 		stk = stack<char>();
 	}
+	return 0;
 }
 
