@@ -30,4 +30,5 @@ int main() {
 	{
 		if (gcd % i == 0) cout << i << " ";
 	}
+	return 0;
 }
