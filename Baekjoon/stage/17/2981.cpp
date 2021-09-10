@@ -14,6 +14,7 @@ int main() {
 	int N;
 	cin >> N;
 
+	//sub:앞의 원소와 현재 원소의 차
 	int* arr = new int[N];
 	int* sub = new int[N - 1];
 
@@ -26,6 +27,7 @@ int main() {
 	N -= 1;
 	sort(sub, sub + N);
 
+	//유클리드 호제법을 이용해 최대공약수 구하기
 	for (int i = 1; i < N; i++)
 		sub[i] = Euclid(sub[i], sub[i - 1]);
 
