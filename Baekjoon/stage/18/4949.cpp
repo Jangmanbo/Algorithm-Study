@@ -9,7 +9,7 @@ int main() {
 	bool VPS = true;
 	stack<char> stk;
 	while (getline(cin, str)) {
-		if (str == ".") break;
+		if (str == ".") break;//프로그램 종료
 		size = str.size();
 		for (int i = 0; i < size; i++)
 		{
@@ -18,7 +18,7 @@ int main() {
 				if (!stk.empty() && stk.top() == '(') {
 					stk.pop();
 				}
-				else {
+				else {//VPS가 아님
 					VPS = false;
 					break;
 				}
@@ -27,7 +27,7 @@ int main() {
 				if (!stk.empty() && stk.top() == '[') {
 					stk.pop();
 				}
-				else {
+				else {//VPS가 아님
 					VPS = false;
 					break;
 				}
@@ -36,6 +36,7 @@ int main() {
 		//결과 출력
 		if (stk.empty() && VPS) cout << "yes" << "\n";
 		else cout << "no" << "\n";
+
 		//초기화
 		VPS = true;
 		stk = stack<char>();
