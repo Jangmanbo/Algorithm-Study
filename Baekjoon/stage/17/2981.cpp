@@ -7,6 +7,7 @@ int Euclid(int a, int b) {
 }
 
 int main() {
+	//입출력 속도 높이기
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
