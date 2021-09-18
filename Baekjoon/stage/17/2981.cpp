@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 int Euclid(int a, int b) {
@@ -33,8 +34,19 @@ int main() {
 		sub[i] = Euclid(sub[i], sub[i - 1]);
 
 	int gcd = sub[N - 1];
-	for (int i = 2; i <= gcd; i++)
-		if (gcd % i == 0) cout << i << " ";
+	vector<int> vec;
+	for (int i = 2; i * i <= gcd; i++) {
+		if (gcd % i == 0) {
+			vec.push_back(i);
+			vec.push_back(gcd / i);
+		}
+	}
+	vec.push_back(gcd);
+	sort(vec.begin(), vec.end());
+	vec.erase(unique(vec.begin(), vec.end()), vec.end());//중복된 원소 제거
+
+	for (int elem : vec)
+		cout << elem << " ";
 
 	return 0;
 }
