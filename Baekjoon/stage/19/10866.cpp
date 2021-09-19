@@ -4,6 +4,11 @@
 using namespace std;
 
 int main() {
+	//입출력 속도 높이기
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
 	deque<int> dq;
 	string str;
 	int N, num;
