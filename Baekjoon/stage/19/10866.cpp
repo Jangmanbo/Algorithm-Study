@@ -49,6 +49,4 @@ int main() {
 			else cout << dq.back() << "\n";
 		}
 	}
-
-	return 0;
 }
