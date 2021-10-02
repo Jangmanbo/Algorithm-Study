@@ -31,7 +31,7 @@ int main() {
 		repeat = 0;
 	}
 
-
+	//정답 출력
 	cout << ans;
 	return 0;
 }
