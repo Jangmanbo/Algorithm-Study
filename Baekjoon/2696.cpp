@@ -8,8 +8,8 @@ int main()
 	cin.tie(NULL);
 
 	int T, M, num, mid, len;
-	priority_queue<int> left;
-	priority_queue<int, vector<int>, greater<int>> right;
+	priority_queue<int> left;	// 기준보다 작은 수 (최대 힙)
+	priority_queue<int, vector<int>, greater<int>> right;	// 기준보다 큰 수 (최소 힙)
 	vector<int> ans;
 
 	cin >> T;
@@ -17,9 +17,8 @@ int main()
 	{
 		cin >> M;
 
-		// 첫번째 수가 기준
-		cin >> mid;
-		ans.push_back(mid);
+		cin >> mid;	// 첫번째 수가 기준
+		ans.push_back(mid);	// 첫번째 수는 항상 정답
 
 		for (int i = 1; i < M; i++)
 		{
@@ -29,7 +28,7 @@ int main()
 			else
 				right.push(num);
 
-			// 홀수 번째
+			// 홀수 번째 수마다 중앙값 구하기
 			if (!(i % 2))
 			{
 				if (left.size() < right.size())
