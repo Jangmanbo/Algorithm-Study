@@ -1,5 +1,4 @@
 #include <iostream>
-#include <map>
 #include <vector>
 using namespace std;
 
@@ -7,35 +6,30 @@ int K, V, E;
 int color[20001];
 vector<int> graph[20001];
 
-bool dfs(int key)
+void dfs(int key)
 {
-	// 인접한 정점이 없음
-	if (graph[key].size() == 0)
-		return true;
-	
+	if (!color[key])
+		color[key] = 1;
+
 	for (int nxt : graph[key])
 	{
-		// 두 정점 모두 처음 체크
-		if (!color[key] && !color[nxt])
-		{
-			color[key] = 1;
-			color[nxt] = -1;
-			return dfs(nxt);
-		}
-		// 두 정점 모두 이전에 체크
-		else if (color[key] && color[nxt])
-		{
-			if (color[key] == color[nxt])
-				return false;
-		}// key만 이전에 체크
-		else if (color[key])
+		if (!color[nxt])
 		{
 			color[nxt] = -color[key];
-			return dfs(nxt);
+			dfs(nxt);
 		}
-		// nxt만 이전에 체크
-		else
-			color[key] = -color[nxt];
+	}
+}
+
+bool check()
+{
+	for (int i = 1; i <= V; i++)
+	{
+		for (int near : graph[i])
+		{
+			if (color[i] == color[near])
+				return false;
+		}
 	}
 	return true;
 }
@@ -53,16 +47,14 @@ bool solve() {
 		graph[v].push_back(u);
 	}
 
-
 	for (int i = 1; i <= V; i++)
-	{
-		if (!dfs(i))
-		{
-			return false;
-		}
-	}
+		dfs(i);
 
-	return true;
+	if (check())
+		return true;
+	else
+		return false;
+
 }
 
 void init() {
@@ -72,6 +64,7 @@ void init() {
 		color[i] = 0;
 	}
 }
+
 int main()
 {
 	ios::sync_with_stdio(0);
