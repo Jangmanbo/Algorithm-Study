@@ -3,13 +3,32 @@
 using namespace std;
 
 #define MAX 50
+#define REAL 1
+#define LIE -1
 
 int N, M, real, ans;
-bool real_people[MAX + 1];
+vector<int> real_people;
+int hear[MAX + 1];
 vector<int> party[MAX];
 
-void dfs()
+void dfs(int p, int lie)
 {
+	if (p == M)
+	{
+		ans = max(ans, lie);
+	}
+	for (int person : party[p])
+	{
+		auto it = find(real_people.begin(), real_people.end(), person);
+		if (it != real_people.end())	// 진실을 아는 사람이 있음
+		{
+
+		}
+		else	// 진실을 아는 사람이 없음
+		{
+
+		}
+	}
 
 }
 
@@ -23,7 +42,7 @@ void input()
 	for (int i = 0; i < real; i++)
 	{
 		cin >> p;
-		real_people[p] = true;
+		real_people.push_back(p);
 	}
 
 	// 각 파티에 오는 사람
@@ -44,6 +63,6 @@ int main()
 	cin.tie(NULL);
 
 	input();
-	dfs();
+	dfs(0, 0);
 	cout << ans;
 }
