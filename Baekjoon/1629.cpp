@@ -2,25 +2,19 @@
 #include <cmath>
 using namespace std;
 
-long long A, C;
+long long int A, C;
 
-long long func(long long B)
+long long int func(long long int B)
 {
-	long long temp;
-	if (B % 2)
-	{
-		temp = pow(func(B / 2), 2);
-		return (temp * A) % C;
-	}
+	if (B == 1)
+		return A;
 	else
 	{
-		if (B / 2)
-		{
-			temp = pow(func(B / 2), 2);
-			return temp % C;
-		}
+		long long int n = func(B / 2);
+		if (B % 2)
+			return (((n * n) % C) * A) % C;
 		else
-			return A;
+			return (n * n) % C;
 	}
 }
 
@@ -29,7 +23,7 @@ int main()
 	ios::sync_with_stdio(0);
 	cin.tie(NULL);
 
-	long long B;
+	long long int B;
 	cin >> A >> B >> C;
 	A %= C;
 
